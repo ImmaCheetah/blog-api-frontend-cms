@@ -11,6 +11,7 @@ export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  // const [isPublished, setIsPublished] = useState([]);
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
@@ -45,6 +46,7 @@ export default function SignUpPage() {
           const res = await response.json();
           console.log(res.posts);
           setPosts(res.posts);
+          
         }
       } catch (error) {
         console.log(error);
@@ -54,6 +56,15 @@ export default function SignUpPage() {
     };
     data();
   }, []);
+
+  // function handleIsPublished() {
+  //   setIsPublished((prevIsPublished) => {
+  //     return [
+  //       ...prevIsPublished,
+  //       !isPublished
+  //     ];
+  //   });
+  // }
 
   if (loading) return <p>Loading...</p>;
   // if (error)
@@ -75,6 +86,7 @@ export default function SignUpPage() {
                 author={post.author.username}
                 postId={post.id}
                 isPublished={post.isPublished}
+                // handleIsPublished={handleIsPublished}
               />
             );
           })}

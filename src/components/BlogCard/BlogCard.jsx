@@ -1,5 +1,7 @@
+import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./BlogCard.module.css";
 import { Link } from "react-router-dom";
+
 
 /* eslint-disable react/prop-types */
 export default function BlogCard({
@@ -10,6 +12,31 @@ export default function BlogCard({
   postId,
   isPublished
 }) {
+  const auth = useAuth();
+  
+
+  async function handlePublish() {
+    console.log(postId);
+    try {
+      const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          isPublished: isPublished ? "unpublish" : "publish",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: auth.token
+        }
+      })
+
+      const res = await response.json();
+      console.log(res)
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={styles.cardDiv}>
       <div className={styles.cardHeader}>
@@ -22,9 +49,9 @@ export default function BlogCard({
       </Link>
       {
         isPublished ? 
-        <button>Unpublish</button>
+        <button className={styles.unpublishBtn} onClick={handlePublish}>Unpublish</button>
         :
-        <button>Publish</button>
+        <button className={styles.publishBtn} onClick={handlePublish}>Publish</button>
       }
     </div>
   );
