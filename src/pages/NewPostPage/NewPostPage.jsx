@@ -16,6 +16,9 @@ export default function NewPostPage() {
       try {
         const response = await fetch(`http://localhost:8080/posts/api-key`, {
           method: "POST",
+          headers: {
+            Authorization: auth.token,
+          },
         });
 
         if (response.status >= 400) {
