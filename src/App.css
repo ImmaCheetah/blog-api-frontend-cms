@@ -120,3 +120,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+#root {
+  background-color: rgb(223, 212, 248);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,35 @@
+nav {
+  display: flex;
+  align-items: center;
+  background-color: rgb(158, 176, 252);
+  height: 4rem;
+  padding: 1rem 4rem;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  box-shadow: 7px 6px 28px -18px rgba(0, 0, 0, 0.76);
+}
+
+.blogNameLink {
+  margin-right: auto;
+}
+
+.blogName {
+  font-size: 2rem;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.navBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+}
+
+.navBtn:hover,
+.blogName:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
