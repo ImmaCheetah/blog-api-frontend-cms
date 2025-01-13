@@ -11,7 +11,7 @@ export default function SignUpPage() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [isPublished, setIsPublished] = useState([]);
+  const [isPublished, setIsPublished] = useState([]);
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
@@ -57,14 +57,21 @@ export default function SignUpPage() {
     data();
   }, []);
 
-  // function handleIsPublished() {
-  //   setIsPublished((prevIsPublished) => {
-  //     return [
-  //       ...prevIsPublished,
-  //       !isPublished
-  //     ];
-  //   });
-  // }
+  function handleIsPublished(postId) {
+    console.log('handle is published')
+    const newIsPublished = posts.map((post) => {
+      if (post.id === postId) {
+        console.log('handle is published if condition')
+        console.log(post.isPublished, !isPublished)
+        post.isPublished = !post.isPublished
+        return post;
+      } else {
+        return post;
+      }
+    })
+
+    setIsPublished(newIsPublished);
+  }
 
   if (loading) return <p>Loading...</p>;
   // if (error)
@@ -86,7 +93,7 @@ export default function SignUpPage() {
                 author={post.author.username}
                 postId={post.id}
                 isPublished={post.isPublished}
-                // handleIsPublished={handleIsPublished}
+                handleIsPublished={handleIsPublished}
               />
             );
           })}

@@ -1,6 +1,6 @@
 import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./BlogCard.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 /* eslint-disable react/prop-types */
@@ -10,13 +10,13 @@ export default function BlogCard({
   timestamp,
   author,
   postId,
-  isPublished
+  isPublished,
+  handleIsPublished
 }) {
   const auth = useAuth();
-  
+  const navigate = useNavigate();
 
-  async function handlePublish() {
-    console.log(postId);
+  async function publishFetch(postId) {
     try {
       const response = await fetch(`http://localhost:8080/posts/${postId}`, {
         method: "PATCH",
@@ -31,10 +31,18 @@ export default function BlogCard({
 
       const res = await response.json();
       console.log(res)
+      
 
     } catch(error) {
       console.log(error);
     }
+  }
+
+  async function handlePublish() {
+    console.log(postId);
+    handleIsPublished(postId);
+    publishFetch(postId);
+    navigate('/posts')
   }
 
   return (
