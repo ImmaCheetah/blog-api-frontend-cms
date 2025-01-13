@@ -45,8 +45,7 @@ export default function SignUpPage() {
         if (response.status === 200) {
           const res = await response.json();
           console.log(res.posts);
-          setPosts(res.posts);
-          
+          setPosts(res.posts);   
         }
       } catch (error) {
         console.log(error);
@@ -57,7 +56,7 @@ export default function SignUpPage() {
     data();
   }, []);
 
-  function handleIsPublished(postId) {
+  function handleIsPublishedState(postId) {
     const newIsPublished = posts.map((post) => {
       if (post.id === postId) {
         post.isPublished = !post.isPublished
@@ -68,6 +67,12 @@ export default function SignUpPage() {
     })
 
     setIsPublished(newIsPublished);
+  }
+
+  function handleDeleteState(postId) {
+    setPosts(posts.filter(post => {
+      return post.id !== postId
+    }))
   }
 
   if (loading) return <p>Loading...</p>;
@@ -90,7 +95,8 @@ export default function SignUpPage() {
                 author={post.author.username}
                 postId={post.id}
                 isPublished={post.isPublished}
-                handleIsPublished={handleIsPublished}
+                handleIsPublishedState={handleIsPublishedState}
+                handleDeleteState={handleDeleteState}
               />
             );
           })}
