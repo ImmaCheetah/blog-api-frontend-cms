@@ -1,6 +1,7 @@
 import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./BlogCard.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import parse from 'html-react-parser';
 
 
 /* eslint-disable react/prop-types */
@@ -50,17 +51,21 @@ export default function BlogCard({
       <div className={styles.cardHeader}>
         <h2>{title}</h2>
         <p>{timestamp}</p>
+      {parse(content)}. . .
       </div>
-      <p>{content}. . .</p>
-      <Link to={"/posts/" + postId} className={styles.cardBtn}>
-        View Post
-      </Link>
-      {
-        isPublished ? 
-        <button className={styles.unpublishBtn} onClick={handlePublish}>Unpublish</button>
-        :
-        <button className={styles.publishBtn} onClick={handlePublish}>Publish</button>
-      }
+      <div className={styles.buttonsDiv}>
+        <Link to={"/posts/" + postId} className={styles.viewBtn}>
+          View
+        </Link>
+        <button className={styles.editBtn}>Edit</button>
+        <button className={styles.deleteBtn}>Delete</button>
+        {
+          isPublished ?
+          <button className={styles.unpublishBtn} onClick={handlePublish}>Unpublish</button>
+          :
+          <button className={styles.publishBtn} onClick={handlePublish}>Publish</button>
+        }
+      </div>
     </div>
   );
 }

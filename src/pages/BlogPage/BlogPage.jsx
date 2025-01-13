@@ -58,11 +58,8 @@ export default function SignUpPage() {
   }, []);
 
   function handleIsPublished(postId) {
-    console.log('handle is published')
     const newIsPublished = posts.map((post) => {
       if (post.id === postId) {
-        console.log('handle is published if condition')
-        console.log(post.isPublished, !isPublished)
         post.isPublished = !post.isPublished
         return post;
       } else {
