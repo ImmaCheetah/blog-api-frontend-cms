@@ -1,0 +1,26 @@
+.commentDiv {
+  width: 25rem;
+  height: auto;
+  border: solid 1px black;
+  background-color: white;
+  gap: 1rem;
+  padding: 0.8rem;
+  box-shadow: 10px 10px 0px 0px rgb(0, 0, 0);
+  margin-top: 1rem;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.commentDate {
+  font-size: 0.8rem;
+  color: rgb(105, 105, 105);
+}
+
+.commentAuthor {
+  font-weight: bold;
+}
