@@ -46,7 +46,7 @@ export default function Comment({ author, content, timestamp, commentId, handleC
         <p className={styles.commentDate}>{formatDate(timestamp)}</p>
       </div>
       <p>{content}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <button className={styles.deleteBtn} onClick={handleDelete}>Delete</button>
     </div>
   );
 }

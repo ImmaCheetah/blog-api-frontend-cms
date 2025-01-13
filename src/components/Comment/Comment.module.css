@@ -24,3 +24,14 @@
 .commentAuthor {
   font-weight: bold;
 }
+
+.deleteBtn {
+  display: flex;
+  margin-left: auto;
+  appearance: none;
+  border: none;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(186, 14, 14);
+}
