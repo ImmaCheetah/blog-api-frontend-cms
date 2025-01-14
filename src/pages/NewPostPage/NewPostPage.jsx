@@ -2,9 +2,12 @@ import styles from "./NewPostPage.module.css";
 import { useRef, useEffect, useState } from 'react';
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
 import TextEditor from "../../components/TextEditor/TextEditor";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export default function NewPostPage() {
+  let navigate = useNavigate();
   const editorRef = useRef(null);
   const auth = useAuth();
   const [error, setError] = useState(null);
@@ -16,6 +19,7 @@ export default function NewPostPage() {
     const title = form.get("title");
 
     newPostFetch(title, content);
+    navigate('/posts');
   }
 
   async function newPostFetch(title, content) {
@@ -31,6 +35,18 @@ export default function NewPostPage() {
           Authorization: auth.token,
         },
       })
+
+      if (response.status >= 400) {
+        toast.error('Failed to create post', {
+          position: 'bottom-right',
+        })
+      }
+
+      if (response.status === 200) {
+        toast.success('Post created!', {
+          position: 'bottom-right',
+        })
+      }
 
       const res = await response.json();
       console.log(res)

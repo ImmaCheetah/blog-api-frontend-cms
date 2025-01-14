@@ -1,7 +1,7 @@
 import styles from "./BlogPage.module.css";
 import { useState, useEffect } from "react";
-import BlogCard from "../../components/BlogCard/BlogCard";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
+import BlogTable from "../../components/BlogTable/BlogTable";
 // import Error from "../../components/Error/Error";
 
 
@@ -83,25 +83,34 @@ export default function SignUpPage() {
 
   return (
     <>
-      {posts && (
-        <div className={styles.postsDiv}>
-          {posts.map((post) => {
-            return (
-              <BlogCard
-                key={post.id}
-                title={post.title}
-                content={limitText(post.content)}
-                timestamp={formatDate(post.timestamp)}
-                author={post.author.username}
-                postId={post.id}
-                isPublished={post.isPublished}
-                handleIsPublishedState={handleIsPublishedState}
-                handleDeleteState={handleDeleteState}
-              />
-            );
-          })}
-        </div>
-      )}
+      <table>
+        <thead>
+          <tr>
+            <th>Blog Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Content</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+      {
+        posts.map((post) => {
+          return (
+            <BlogTable
+            key={post.id}
+            title={post.title}
+            content={limitText(post.content)}
+            timestamp={formatDate(post.timestamp)}
+            author={post.author.username}
+            postId={post.id}
+            isPublished={post.isPublished}
+            handleIsPublishedState={handleIsPublishedState}
+            handleDeleteState={handleDeleteState}
+            />
+          )
+        })
+      }
+      </table>  
     </>
   );
 }
