@@ -1,3 +1,4 @@
+import styles from "./EditBlogPage.module.css";
 import { useRef, useEffect, useState } from 'react';
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
 import TextEditor from '../../components/TextEditor/TextEditor';
@@ -83,8 +84,9 @@ export default function EditBlogPage() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input 
+        <label htmlFor="title"></label>
+        <input
+          className={styles.title}  
           type="text" 
           name="title" 
           id="title" 

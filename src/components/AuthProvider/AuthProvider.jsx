@@ -8,6 +8,7 @@ const AuthContext = createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("JWT") || null);
+  const [error, setError] = useState(null);
 
   let navigate = useNavigate();
 
@@ -23,19 +24,20 @@ export default function AuthProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
+      console.log(response)
 
       const res = await response.json();
-      console.log(res);
+      console.log('auth response',res);
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
         console.log("USER FROM LOGIN", res.user);
         console.log("USER FROM LOGIN", res.token);
         localStorage.setItem("JWT", res.token);
-        navigate("/");
+        navigate("/posts");
         return;
       }
-      throw new Error(res.message);
+      setError(res.errorMsg)
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +51,7 @@ export default function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginFetch, logOut }}>
+    <AuthContext.Provider value={{ token, user, error, loginFetch, logOut }}>
       {children}
     </AuthContext.Provider>
   );

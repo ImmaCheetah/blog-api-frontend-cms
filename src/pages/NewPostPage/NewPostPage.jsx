@@ -10,13 +10,13 @@ export default function NewPostPage() {
   let navigate = useNavigate();
   const editorRef = useRef(null);
   const auth = useAuth();
+  const [title, setTitle] = useState('');
   const [error, setError] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
     const form = new FormData(e.target);
     const content = editorRef.current.getContent();
-    const title = form.get("title");
 
     newPostFetch(title, content);
     navigate('/posts');
@@ -59,8 +59,16 @@ export default function NewPostPage() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input type="text" name="title" id="title" />
+        <label htmlFor="title"></label>
+        <input 
+          className={styles.title} 
+          type="text" 
+          name="title" 
+          id="title" 
+          placeholder="Title"
+          onChange={(e) => setTitle(e.target.value)} 
+          required
+        />
         <TextEditor editorRef={editorRef}/>
         <button type="submit">Submit</button>
       </form>

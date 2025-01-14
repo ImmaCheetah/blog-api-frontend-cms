@@ -41,6 +41,7 @@ export default function LoginPage() {
         />
         <button type="submit">Log In</button>
       </form>
+      <p>{auth.error}</p>
     </>
   );
 }
