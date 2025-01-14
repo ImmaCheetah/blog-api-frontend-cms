@@ -15,7 +15,6 @@ export default function BlogCard({
   handleDeleteState
 }) {
   const auth = useAuth();
-  const navigate = useNavigate();
 
   async function publishFetch(postId) {
     try {
@@ -69,8 +68,16 @@ export default function BlogCard({
         <Link to={"/posts/" + postId} className={styles.viewBtn}>
           View
         </Link>
-        <button className={styles.editBtn}>Edit</button>
-        <button className={styles.deleteBtn} onClick={handleDelete}>Delete</button>
+        <Link to={"/posts/edit/" + postId}>
+          Edit
+        </Link>
+        <button className={styles.editBtn} >Edit</button>
+        <button 
+          className={styles.deleteBtn} 
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
         {
           isPublished ?
           <button className={styles.unpublishBtn} onClick={handlePublish}>Unpublish</button>
