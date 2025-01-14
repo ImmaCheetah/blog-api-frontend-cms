@@ -68,10 +68,9 @@ export default function BlogCard({
         <Link to={"/posts/" + postId} className={styles.viewBtn}>
           View
         </Link>
-        <Link to={"/posts/edit/" + postId}>
+        <Link className={styles.editBtn} to={"/posts/edit/" + postId}>
           Edit
         </Link>
-        <button className={styles.editBtn} >Edit</button>
         <button 
           className={styles.deleteBtn} 
           onClick={handleDelete}

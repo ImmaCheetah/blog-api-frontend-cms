@@ -65,6 +65,9 @@
 
 .editBtn {
   background-color: rgb(93, 153, 177);
+  text-decoration: none;
+  padding: 0.3rem;
+  font-size: 1.1rem;
 }
 
 .buttonsDiv {

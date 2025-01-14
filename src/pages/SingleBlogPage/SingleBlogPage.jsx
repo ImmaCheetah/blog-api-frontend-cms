@@ -2,6 +2,7 @@ import styles from "./SingleBlogPage.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import CommentSection from "../../components/CommentSection/CommentSection";
+import parse from 'html-react-parser';
 // import Error from "../../components/Error/Error";
 
 export default function SingleBlogPage() {
@@ -69,7 +70,7 @@ export default function SingleBlogPage() {
             <p>Written By: {post.author.username}</p>
             <p>{formatDate(post.timestamp)}</p>
           </div>
-          <p className={styles.postContent}>{post.content}</p>
+          <div className={styles.postContent}>{parse(post.content)}</div>
           <CommentSection comments={comments} handleCommentDelete={handleCommentDelete}/>
         </div>
       )}
