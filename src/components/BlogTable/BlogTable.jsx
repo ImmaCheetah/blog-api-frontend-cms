@@ -101,7 +101,7 @@ export default function BlogTable({
         <td>
           {timestamp}
         </td>
-        <td>
+        <td className={styles.contentData}>
           {parse(content)}
         </td>
         <td>

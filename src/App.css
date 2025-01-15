@@ -130,8 +130,14 @@ main {
 }
 
 #root {
-  background-color: rgb(223, 212, 248);
+  background-color: var(--main-background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
+:root {
+  --header-background: #353535;
+  --main-background: #FFFFFF;
+}
+
