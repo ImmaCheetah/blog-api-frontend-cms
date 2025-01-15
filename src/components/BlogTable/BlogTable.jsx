@@ -92,19 +92,19 @@ export default function BlogTable({
   return (
     <tbody className={styles.tbody}>
       <tr>
-        <td>
+        <td data-cell="title">
           {title}
         </td>
-        <td>
+        <td data-cell="author">
           {author}
         </td>
-        <td>
+        <td data-cell="timestamp">
           {timestamp}
         </td>
-        <td className={styles.contentData}>
+        <td data-cell="content" className={styles.contentData}>
           {parse(content)}
         </td>
-        <td>
+        <td data-cell="actions">
           <div className={styles.buttonsDiv}>
             <Link to={"/posts/" + postId} className={styles.viewBtn}>
               View

@@ -97,7 +97,12 @@ export default function EditBlogPage() {
           content={post.content} 
           editorRef={editorRef} 
         />
-        <button type="submit">Update</button>
+        <button 
+          className={styles.submitBtn} 
+          type="submit"
+        >
+        Update
+        </button>
       </form>
     </>
   )

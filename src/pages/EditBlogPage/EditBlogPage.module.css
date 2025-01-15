@@ -4,8 +4,20 @@
   background-color: transparent;
   border: none;
   font-size: 2rem;
+  width: 100%;
 }
 
 .title:focus{
     outline: none;
+}
+
+.submitBtn {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 6rem;
+  font-size: 1.3rem;
+  appearance: none;
+  border: none;
+  background-color: rgb(76, 182, 76);
+  color: white;
 }

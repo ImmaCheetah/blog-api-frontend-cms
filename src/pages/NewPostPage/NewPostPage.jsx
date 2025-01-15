@@ -70,7 +70,7 @@ export default function NewPostPage() {
           required
         />
         <TextEditor editorRef={editorRef}/>
-        <button type="submit">Submit</button>
+        <button className={styles.submitBtn} type="submit">Submit</button>
       </form>
     </>
   )

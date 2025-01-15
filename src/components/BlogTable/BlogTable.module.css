@@ -88,9 +88,7 @@ table th {
 
 table td {
   padding: 5px 20px;
-  height: 1rem;
   font-size: 1rem;
-  /* text-align: left; */
 }
 
 table h1,
@@ -120,4 +118,24 @@ table tbody:nth-of-type(odd) {
 
 table tbody tr:last-of-type {
   border-bottom: 1px solid #454545;
+}
+
+table ul {
+  padding-left: 1rem;
+}
+
+@media (max-width: 650px) {
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+  }
+
+  td::before {
+    content: attr(data-cell) ": ";
+    font-weight: bold;
+    text-transform: capitalize;
+  }
 }

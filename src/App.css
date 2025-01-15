@@ -110,6 +110,10 @@ button:active {
   transition: 100ms ease-in-out;
 }
 
+button {
+  cursor: pointer;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
