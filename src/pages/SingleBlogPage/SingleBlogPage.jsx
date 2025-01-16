@@ -2,8 +2,8 @@ import styles from "./SingleBlogPage.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import CommentSection from "../../components/CommentSection/CommentSection";
-import parse from 'html-react-parser';
-// import Error from "../../components/Error/Error";
+import parse from "html-react-parser";
+import Error from "../../components/Error/Error";
 
 export default function SingleBlogPage() {
   let { postId } = useParams();
@@ -23,9 +23,11 @@ export default function SingleBlogPage() {
   }
 
   function handleCommentDelete(commentId) {
-    setComments(comments.filter(comment => {
-      return comment.id !== commentId
-    }));
+    setComments(
+      comments.filter((comment) => {
+        return comment.id !== commentId;
+      }),
+    );
   }
 
   useEffect(() => {
@@ -71,7 +73,10 @@ export default function SingleBlogPage() {
             <p>{formatDate(post.timestamp)}</p>
           </div>
           <div className={styles.postContent}>{parse(post.content)}</div>
-          <CommentSection comments={comments} handleCommentDelete={handleCommentDelete}/>
+          <CommentSection
+            comments={comments}
+            handleCommentDelete={handleCommentDelete}
+          />
         </div>
       )}
     </>

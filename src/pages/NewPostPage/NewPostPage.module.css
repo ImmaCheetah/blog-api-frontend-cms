@@ -4,10 +4,11 @@
   background-color: transparent;
   border: none;
   font-size: 2rem;
+  width: 100%;
 }
 
-.title:focus{
-    outline: none;
+.title:focus {
+  outline: none;
 }
 
 .submitBtn {

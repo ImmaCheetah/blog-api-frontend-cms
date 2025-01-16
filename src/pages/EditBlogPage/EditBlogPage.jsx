@@ -1,16 +1,17 @@
 import styles from "./EditBlogPage.module.css";
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
-import TextEditor from '../../components/TextEditor/TextEditor';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import TextEditor from "../../components/TextEditor/TextEditor";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import Error from "../../components/Error/Error";
 
 export default function EditBlogPage() {
   const auth = useAuth();
   let { postId } = useParams();
   const editorRef = useRef(null);
-  const [title, setTitle] = useState('');
-  const [post, setPost] = useState('');
+  const [title, setTitle] = useState("");
+  const [post, setPost] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -53,20 +54,19 @@ export default function EditBlogPage() {
           "Content-Type": "application/json",
           Authorization: auth.token,
         },
-      })
-      
+      });
+
       if (response.status >= 400) {
-        toast.error('Failed to update post', {
-          position: 'bottom-right',
-        })
+        toast.error("Failed to update post", {
+          position: "bottom-right",
+        });
       }
 
       if (response.status === 200) {
-        toast.success('Post updated!', {
-          position: 'bottom-right',
-        })
+        toast.success("Post updated!", {
+          position: "bottom-right",
+        });
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -78,32 +78,32 @@ export default function EditBlogPage() {
     const content = editorRef.current.getContent();
     const title = form.get("title");
 
-    editPostFetch(postId, title, content)
+    editPostFetch(postId, title, content);
   }
+
+  if (loading) return <p>Loading...</p>;
+  if (error)
+    return (
+      <Error name={error.name} status={error.status} message={error.errorMsg} />
+    );
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title"></label>
         <input
-          className={styles.title}  
-          type="text" 
-          name="title" 
-          id="title" 
+          className={styles.title}
+          type="text"
+          name="title"
+          id="title"
           defaultValue={post.title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <TextEditor 
-          content={post.content} 
-          editorRef={editorRef} 
-        />
-        <button 
-          className={styles.submitBtn} 
-          type="submit"
-        >
-        Update
+        <TextEditor content={post.content} editorRef={editorRef} />
+        <button className={styles.submitBtn} type="submit">
+          Update
         </button>
       </form>
     </>
-  )
+  );
 }

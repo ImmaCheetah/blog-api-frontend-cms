@@ -2,9 +2,7 @@ import styles from "./BlogPage.module.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
 import BlogTable from "../../components/BlogTable/BlogTable";
-// import Error from "../../components/Error/Error";
-
-
+import Error from "../../components/Error/Error";
 
 export default function SignUpPage() {
   const auth = useAuth();
@@ -32,8 +30,8 @@ export default function SignUpPage() {
         const response = await fetch(`http://localhost:8080/posts`, {
           method: "GET",
           headers: {
-            Authorization: auth.token
-          }
+            Authorization: auth.token,
+          },
         });
 
         if (response.status >= 400) {
@@ -45,7 +43,7 @@ export default function SignUpPage() {
         if (response.status === 200) {
           const res = await response.json();
           console.log(res.posts);
-          setPosts(res.posts);   
+          setPosts(res.posts);
         }
       } catch (error) {
         console.log(error);
@@ -59,27 +57,29 @@ export default function SignUpPage() {
   function handleIsPublishedState(postId) {
     const newIsPublished = posts.map((post) => {
       if (post.id === postId) {
-        post.isPublished = !post.isPublished
+        post.isPublished = !post.isPublished;
         return post;
       } else {
         return post;
       }
-    })
+    });
 
     setIsPublished(newIsPublished);
   }
 
   function handleDeleteState(postId) {
-    setPosts(posts.filter(post => {
-      return post.id !== postId
-    }))
+    setPosts(
+      posts.filter((post) => {
+        return post.id !== postId;
+      }),
+    );
   }
 
   if (loading) return <p>Loading...</p>;
-  // if (error)
-  //   return (
-  //     <Error name={error.name} status={error.status} message={error.errorMsg} />
-  //   );
+  if (error)
+    return (
+      <Error name={error.name} status={error.status} message={error.errorMsg} />
+    );
 
   return (
     <>
@@ -93,24 +93,22 @@ export default function SignUpPage() {
             <th>Actions</th>
           </tr>
         </thead>
-      {
-        posts.map((post) => {
+        {posts.map((post) => {
           return (
             <BlogTable
-            key={post.id}
-            title={post.title}
-            content={limitText(post.content)}
-            timestamp={formatDate(post.timestamp)}
-            author={post.author.username}
-            postId={post.id}
-            isPublished={post.isPublished}
-            handleIsPublishedState={handleIsPublishedState}
-            handleDeleteState={handleDeleteState}
+              key={post.id}
+              title={post.title}
+              content={limitText(post.content)}
+              timestamp={formatDate(post.timestamp)}
+              author={post.author.username}
+              postId={post.id}
+              isPublished={post.isPublished}
+              handleIsPublishedState={handleIsPublishedState}
+              handleDeleteState={handleDeleteState}
             />
-          )
-        })
-      }
-      </table>  
+          );
+        })}
+      </table>
     </>
   );
 }

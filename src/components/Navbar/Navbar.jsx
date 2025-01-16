@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const auth = useAuth();
-  
+
   return (
     <nav>
       <NavLink className={styles.blogNameLink} to="/">

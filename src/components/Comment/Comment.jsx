@@ -1,10 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./Comment.module.css";
-
+import { toast } from "react-toastify";
 
 /* eslint-disable react/prop-types */
-export default function Comment({ author, content, timestamp, commentId, handleCommentDelete }) {
+export default function Comment({
+  author,
+  content,
+  timestamp,
+  commentId,
+  handleCommentDelete,
+}) {
   const auth = useAuth();
   let { postId } = useParams();
 
@@ -22,14 +28,30 @@ export default function Comment({ author, content, timestamp, commentId, handleC
 
   async function deleteFetch(postId, commentId) {
     try {
-      await fetch(`http://localhost:8080/posts/${postId}/comments/${commentId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: auth.token
-        }
-      })
-    } catch(error) {
+      const response = await fetch(
+        `http://localhost:8080/posts/${postId}/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: auth.token,
+          },
+        },
+      );
+
+      if (response.status >= 400) {
+        toast.error("Failed to delete comment", {
+          position: "bottom-right",
+        });
+      }
+
+      if (response.status === 200) {
+        toast.success("Comment deleted!", {
+          position: "bottom-right",
+        });
+      }
+
+    } catch (error) {
       console.log(error);
     }
   }
@@ -46,7 +68,9 @@ export default function Comment({ author, content, timestamp, commentId, handleC
         <p className={styles.commentDate}>{formatDate(timestamp)}</p>
       </div>
       <p>{content}</p>
-      <button className={styles.deleteBtn} onClick={handleDelete}>Delete</button>
+      <button className={styles.deleteBtn} onClick={handleDelete}>
+        Delete
+      </button>
     </div>
   );
 }

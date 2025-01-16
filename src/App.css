@@ -1,8 +1,7 @@
 /* CSS Reset from https://piccalil.li/blog/a-more-modern-css-reset/
 by Andy Bell */
 
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
 
 /* Box sizing rules */
 *,
@@ -121,7 +120,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -142,6 +141,5 @@ main {
 
 :root {
   --header-background: #353535;
-  --main-background: #FFFFFF;
+  --main-background: #ffffff;
 }
-

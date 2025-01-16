@@ -11,7 +11,8 @@
   font-size: 0.9rem;
 }
 
-.publishBtn, .unpublishBtn {
+.publishBtn,
+.unpublishBtn {
   appearance: none;
   border: none;
   width: 5rem;
@@ -28,7 +29,8 @@
   color: white;
 }
 
-.deleteBtn, .editBtn {
+.deleteBtn,
+.editBtn {
   appearance: none;
   border: none;
   padding: 0.5rem;
@@ -47,10 +49,11 @@
   font-size: 0.9rem;
 }
 
-.editBtn:active, .viewBtn:active {
+.editBtn:active,
+.viewBtn:active {
   transform: translateY(4px) translateX(4px);
   transition: 100ms ease-in-out;
-} 
+}
 
 .buttonsDiv {
   display: flex;

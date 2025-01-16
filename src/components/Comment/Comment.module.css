@@ -1,11 +1,11 @@
 .commentDiv {
-  width: 25rem;
+  width: 30rem;
   height: auto;
-  border: solid 1px black;
+  border: solid 1px rgb(200, 200, 200);
+  border-radius: 0.8rem;
   background-color: white;
   gap: 1rem;
   padding: 0.8rem;
-  box-shadow: 10px 10px 0px 0px rgb(0, 0, 0);
   margin-top: 1rem;
 }
 

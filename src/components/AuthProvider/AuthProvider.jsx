@@ -24,10 +24,10 @@ export default function AuthProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
-      console.log(response)
+      console.log(response);
 
       const res = await response.json();
-      console.log('auth response',res);
+      console.log("auth response", res);
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
@@ -37,7 +37,7 @@ export default function AuthProvider({ children }) {
         navigate("/posts");
         return;
       }
-      setError(res.errorMsg)
+      setError(res.errorMsg);
     } catch (error) {
       console.log(error);
     }

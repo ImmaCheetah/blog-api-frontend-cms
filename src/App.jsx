@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import { Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import AuthProvider from './components/AuthProvider/AuthProvider';
-import { ToastContainer } from 'react-toastify';
+import { useState, useEffect } from "react";
+import "./App.css";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
-
   return (
     <AuthProvider>
       <header>
@@ -20,4 +19,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;

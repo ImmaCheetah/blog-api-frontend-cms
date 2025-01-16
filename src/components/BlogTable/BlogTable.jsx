@@ -1,9 +1,8 @@
 import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./BlogTable.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import { toast } from "react-toastify";
-
 
 export default function BlogTable({
   title,
@@ -13,9 +12,8 @@ export default function BlogTable({
   postId,
   isPublished,
   handleIsPublishedState,
-  handleDeleteState
+  handleDeleteState,
 }) {
-
   const auth = useAuth();
 
   async function publishFetch(postId) {
@@ -27,29 +25,27 @@ export default function BlogTable({
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: auth.token
-        }
-      })
+          Authorization: auth.token,
+        },
+      });
       const res = await response.json();
 
       if (response.status === 200) {
-        res.isPublished 
-        ? 
-        toast.success('Post published!', {
-          position: 'bottom-right',
-        }) 
-        :
-        toast.success('Post unpublished!', {
-          position: 'bottom-right',
-        })
+        res.isPublished
+          ? toast.success("Post published!", {
+              position: "bottom-right",
+            })
+          : toast.success("Post unpublished!", {
+              position: "bottom-right",
+            });
         handleIsPublishedState(postId);
       } else {
-        toast.error('Failed to publish post', {
-          position: 'bottom-right',
-        })
+        toast.error("Failed to publish post", {
+          position: "bottom-right",
+        });
         return false;
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
@@ -65,21 +61,20 @@ export default function BlogTable({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: auth.token
-        }
-      })
+          Authorization: auth.token,
+        },
+      });
 
       if (response.status === 200) {
-        toast.success('Post deleted!', {
-          position: 'bottom-right',
-        })
+        toast.success("Post deleted!", {
+          position: "bottom-right",
+        });
       } else {
-        toast.error('Failed to delete post', {
-          position: 'bottom-right',
-        })
+        toast.error("Failed to delete post", {
+          position: "bottom-right",
+        });
       }
-
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
@@ -92,15 +87,9 @@ export default function BlogTable({
   return (
     <tbody className={styles.tbody}>
       <tr>
-        <td data-cell="title">
-          {title}
-        </td>
-        <td data-cell="author">
-          {author}
-        </td>
-        <td data-cell="timestamp">
-          {timestamp}
-        </td>
+        <td data-cell="title">{title}</td>
+        <td data-cell="author">{author}</td>
+        <td data-cell="timestamp">{timestamp}</td>
         <td data-cell="content" className={styles.contentData}>
           {parse(content)}
         </td>
@@ -112,21 +101,21 @@ export default function BlogTable({
             <Link className={styles.editBtn} to={"/posts/edit/" + postId}>
               Edit
             </Link>
-            <button 
-              className={styles.deleteBtn} 
-              onClick={handleDelete}
-            >
+            <button className={styles.deleteBtn} onClick={handleDelete}>
               Delete
             </button>
-            {
-              isPublished ?
-              <button className={styles.unpublishBtn} onClick={handlePublish}>Unpublish</button>
-              :
-              <button className={styles.publishBtn} onClick={handlePublish}>Publish</button>
-            }
+            {isPublished ? (
+              <button className={styles.unpublishBtn} onClick={handlePublish}>
+                Unpublish
+              </button>
+            ) : (
+              <button className={styles.publishBtn} onClick={handlePublish}>
+                Publish
+              </button>
+            )}
           </div>
         </td>
       </tr>
     </tbody>
-  )
+  );
 }
