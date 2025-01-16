@@ -1,0 +1,11 @@
+@media only screen and (min-width: 600px) {
+  table.mceLayout, textarea.richEditor {
+     width: 600px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .mceWrapper {
+    width: 90vw;
+  }
+}

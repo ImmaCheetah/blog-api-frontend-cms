@@ -1,3 +1,4 @@
+import styles from "./TextEditor.module.css";
 import { useRef, useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useAuth } from "../../components/AuthProvider/AuthProvider";
@@ -41,7 +42,7 @@ export default function TextEditor({ content, editorRef }) {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <>
+    <div className={styles.mceWrapper}>
       <Editor
         apiKey={apiKey}
         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -49,8 +50,7 @@ export default function TextEditor({ content, editorRef }) {
         init={{
           height: 500,
           min_height: 300,
-          selector: "tinyTextarea",
-          width: 800,
+          selector: "textarea",
           resize: true,
           menubar: false,
           plugins: [
@@ -82,6 +82,6 @@ export default function TextEditor({ content, editorRef }) {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-    </>
+    </div>
   );
 }

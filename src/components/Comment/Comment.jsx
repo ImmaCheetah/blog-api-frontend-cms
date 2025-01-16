@@ -3,7 +3,6 @@ import { useAuth } from "../AuthProvider/AuthProvider";
 import styles from "./Comment.module.css";
 import { toast } from "react-toastify";
 
-/* eslint-disable react/prop-types */
 export default function Comment({
   author,
   content,

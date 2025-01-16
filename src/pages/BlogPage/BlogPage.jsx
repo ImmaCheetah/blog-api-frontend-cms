@@ -4,7 +4,7 @@ import { useAuth } from "../../components/AuthProvider/AuthProvider";
 import BlogTable from "../../components/BlogTable/BlogTable";
 import Error from "../../components/Error/Error";
 
-export default function SignUpPage() {
+export default function BlogPage() {
   const auth = useAuth();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
