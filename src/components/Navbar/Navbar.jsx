@@ -24,7 +24,7 @@ export default function Navbar() {
         </>
       ) : (
         <NavLink to="/login">
-          <button className={styles.navBtn}>Login</button>
+          <button className={styles.navBtn}>Log In</button>
         </NavLink>
       )}
     </nav>
