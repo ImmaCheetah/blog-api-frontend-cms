@@ -20,7 +20,6 @@ export default function LoginPage() {
   return (
     <>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <p>{import.meta.env.VITE_TEST_VAR}</p>
         <h2>Login</h2>
         <label htmlFor="username"></label>
         <input
