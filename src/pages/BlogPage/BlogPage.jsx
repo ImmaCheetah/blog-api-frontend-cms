@@ -83,32 +83,37 @@ export default function BlogPage() {
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>Blog Title</th>
-            <th>Author</th>
-            <th>Date</th>
-            <th>Content</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        {posts.map((post) => {
-          return (
-            <BlogTable
-              key={post.id}
-              title={post.title}
-              content={limitText(post.content)}
-              timestamp={formatDate(post.timestamp)}
-              author={post.author.username}
-              postId={post.id}
-              isPublished={post.isPublished}
-              handleIsPublishedState={handleIsPublishedState}
-              handleDeleteState={handleDeleteState}
-            />
-          );
-        })}
-      </table>
+      {
+        auth.token ?
+        <table>
+          <thead>
+            <tr>
+              <th>Blog Title</th>
+              <th>Author</th>
+              <th>Date</th>
+              <th>Content</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          {posts.map((post) => {
+            return (
+              <BlogTable
+                key={post.id}
+                title={post.title}
+                content={limitText(post.content)}
+                timestamp={formatDate(post.timestamp)}
+                author={post.author.username}
+                postId={post.id}
+                isPublished={post.isPublished}
+                handleIsPublishedState={handleIsPublishedState}
+                handleDeleteState={handleDeleteState}
+              />
+            );
+          })}
+        </table>
+        :
+        <p>Not authorized</p>
+      }
     </>
   );
 }
