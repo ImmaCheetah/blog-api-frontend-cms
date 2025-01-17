@@ -18,7 +18,7 @@ export default function EditBlogPage() {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
           method: "GET",
         });
 
@@ -44,7 +44,7 @@ export default function EditBlogPage() {
 
   async function editPostFetch(postId, title, content) {
     try {
-      const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: "PUT",
         body: JSON.stringify({
           title: title,

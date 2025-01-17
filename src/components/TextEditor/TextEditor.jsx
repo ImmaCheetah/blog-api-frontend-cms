@@ -13,7 +13,7 @@ export default function TextEditor({ content, editorRef }) {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/posts/api-key`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/api-key`, {
           method: "POST",
           headers: {
             Authorization: auth.token,

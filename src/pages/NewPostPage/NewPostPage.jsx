@@ -23,7 +23,7 @@ export default function NewPostPage() {
 
   async function newPostFetch(title, content) {
     try {
-      const response = await fetch(`http://localhost:8080/posts`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: "POST",
         body: JSON.stringify({
           title: title,

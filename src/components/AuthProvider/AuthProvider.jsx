@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
 
   async function loginFetch(username, password) {
     try {
-      const response = await fetch("http://localhost:8080/user/login", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
         method: "POST",
         body: JSON.stringify({
           username: username,

@@ -27,21 +27,23 @@ export default function BlogPage() {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/posts`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
           method: "GET",
           headers: {
             Authorization: auth.token,
           },
         });
+        const res = await response.json();
+        console.log(res)
 
         if (response.status >= 400) {
-          const errors = await response.json();
-          console.log(errors);
-          setError(errors);
+          // const errors = await response.json();
+          console.log(res);
+          setError(res);
         }
 
         if (response.status === 200) {
-          const res = await response.json();
+          // const res = await response.json();
           console.log(res.posts);
           setPosts(res.posts);
         }

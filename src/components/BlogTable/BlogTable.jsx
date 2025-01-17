@@ -18,7 +18,7 @@ export default function BlogTable({
 
   async function publishFetch(postId) {
     try {
-      const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: "PATCH",
         body: JSON.stringify({
           isPublished: isPublished ? "unpublish" : "publish",
@@ -57,7 +57,7 @@ export default function BlogTable({
 
   async function deleteFetch(postId) {
     try {
-      const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

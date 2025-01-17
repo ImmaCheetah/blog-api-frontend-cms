@@ -28,7 +28,7 @@ export default function Comment({
   async function deleteFetch(postId, commentId) {
     try {
       const response = await fetch(
-        `http://localhost:8080/posts/${postId}/comments/${commentId}`,
+        `${import.meta.env.VITE_API_URL}/posts/${postId}/comments/${commentId}`,
         {
           method: "DELETE",
           headers: {
