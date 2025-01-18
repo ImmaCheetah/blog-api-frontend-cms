@@ -30,7 +30,6 @@ export default function EditBlogPage() {
 
         if (response.status === 200) {
           const res = await response.json();
-          console.log(res.post);
           setPost(res.post);
         }
       } catch (error) {

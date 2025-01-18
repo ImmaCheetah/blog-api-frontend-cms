@@ -24,15 +24,11 @@ export default function AuthProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
 
       const res = await response.json();
-      console.log("auth response", res);
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
-        console.log("USER FROM LOGIN", res.user);
-        console.log("USER FROM LOGIN", res.token);
         localStorage.setItem("JWT", res.token);
         navigate("/posts");
         return;

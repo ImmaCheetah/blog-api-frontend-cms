@@ -34,17 +34,12 @@ export default function BlogPage() {
           },
         });
         const res = await response.json();
-        console.log(res)
 
         if (response.status >= 400) {
-          // const errors = await response.json();
-          console.log(res);
           setError(res);
         }
 
         if (response.status === 200) {
-          // const res = await response.json();
-          console.log(res.posts);
           setPosts(res.posts);
         }
       } catch (error) {
